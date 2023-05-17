@@ -1,0 +1,42 @@
+{{#if this.shouldRender}}
+  <div
+    {{did-insert this.getTopicsLists}}
+    class="favorite-topics-homepage {{if this.noContent 'hidden'}}"
+  >
+    <ConditionalLoadingSpinner @condition={{this.isLoading}}>
+      <h3>{{d-icon "star"}} From your favorites </h3>
+      <HorizontalOverflowNav @ariaLabel="User secondary - invites">
+        {{#each this.allTopics as |topic|}}
+          <li
+            style="--category-color: var(--category-{{topic.category_id}}-color)"
+          >
+            <a
+              class="favorite-topic-link"
+              href="/t/{{topic.slug}}/{{topic.id}}/{{topic.last_read_post_number}}"
+            >
+              <div class="topic-title">
+                <span class="topic-status">
+                  {{#if topic.closed}}
+                    {{d-icon "lock"}}
+                  {{/if}}
+                </span>
+                <span class="topic-title-text">{{replace-emoji topic.title}}
+                  <TopicPostBadges
+                    @unreadPosts={{topic.unread_posts}}
+                    @unseen={{topic.unseen}}
+                    @url={{topic.lastUnreadUrl}}
+                  />
+                </span>
+
+              </div>
+              <div class="topic-meta">
+                <span> {{d-icon "reply"}}{{topic.reply_count}}</span>
+                <span> {{d-icon "heart"}}{{topic.like_count}}</span>
+              </div>
+            </a>
+          </li>
+        {{/each}}
+      </HorizontalOverflowNav>
+    </ConditionalLoadingSpinner>
+  </div>
+{{/if}}

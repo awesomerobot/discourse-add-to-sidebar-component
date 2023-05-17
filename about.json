@@ -1,0 +1,9 @@
+{
+  "about_url": null,
+  "license_url": null,
+  "assets": {
+    "icons-sprite": "assets/spritesheet.svg"
+  },
+  "name": "Add to sidebar",
+  "component": true
+}
