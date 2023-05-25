@@ -34,7 +34,7 @@ export default class AddToHomepage extends Component {
     let topicList = await this.store.findFiltered("topicList", {
       filter: "latest",
       params: {
-        [filterType]: [filterValue],
+        [filterType]: filterValue,
         limit: 3,
       },
     });

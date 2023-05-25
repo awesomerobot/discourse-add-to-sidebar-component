@@ -8,7 +8,11 @@
       <HorizontalOverflowNav @ariaLabel="User secondary - invites">
         {{#each this.allTopics as |topic|}}
           <li
-            style="--category-color: var(--category-{{topic.category_id}}-color)"
+            style={{html-safe
+              (concat
+                "--category-color: var(--category-" topic.category_id "-color"
+              )
+            }}
           >
             <a
               class="favorite-topic-link"
